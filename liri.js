@@ -77,17 +77,23 @@ function handleConcert() {
 
 function handleSong() {
   console.log('handle song function invoked')
+
   // Spotify usage with Promises
   let spotify = new Spotify({
-    id: '36a4f0394ddb4cb18dd99fbf46bfdc50',
-    secret: 'd5677fba7c694356beee03f63e6bd466'
+    id: keys.spotify.id,
+    secret: keys.spotify.secret
   });
 
   spotify
-    .search({ type: 'track', query: 'love will tear us apart', limit: 5 })
+    .search({ type: 'track', query: `${userSearch}`, limit: 10 })
     .then(function (response) {
-      console.log(response.tracks);
-      console.log(JSON.stringify(response.tracks, null, 2))
+      let data = response.tracks.items
+      data.forEach((song) => {
+        console.log(song.album.artists[0].name)
+        console.log(song.name)
+        console.log(song.preview_url)
+        console.log(song.album.name)
+      })
     })
     .catch(function (err) {
       console.log(err);
