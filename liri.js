@@ -2,6 +2,7 @@
 require('dotenv').config();
 const axios = require('axios');
 const moment = require('moment');
+const Spotify = require('node-spotify-api');
 // Import the keys.js file
 const keys = require('./keys');
 
@@ -29,6 +30,7 @@ switch (userCommand) {
     handleConcert();
     break;
   case 'spotify-this-song':
+    handleSong();
     break;
   case 'movie-this':
     break;
@@ -68,7 +70,26 @@ function handleConcert() {
         })
       }
     }).catch(function (error) {
-      // console.log('Error:', error);
+      console.log('Error:', error);
       return console.log(`${userSearch} was not found.`)
+    });
+}
+
+function handleSong() {
+  console.log('handle song function invoked')
+  // Spotify usage with Promises
+  let spotify = new Spotify({
+    id: '36a4f0394ddb4cb18dd99fbf46bfdc50',
+    secret: 'd5677fba7c694356beee03f63e6bd466'
+  });
+
+  spotify
+    .search({ type: 'track', query: 'love will tear us apart', limit: 5 })
+    .then(function (response) {
+      console.log(response.tracks);
+      console.log(JSON.stringify(response.tracks, null, 2))
+    })
+    .catch(function (err) {
+      console.log(err);
     });
 }
