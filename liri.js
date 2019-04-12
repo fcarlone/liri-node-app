@@ -53,22 +53,22 @@ function handleConcert() {
       if (concertArray.length === 0) {
         console.log(`${userSearch.toUpperCase()} currently not touring`)
       } else {
-
         // loop through concert data array
-        console.log(`${userSearch.toUpperCase()} will be appearing at:`)
+        // console.log(`${userSearch.toUpperCase()} will be appearing at:`)
         concertArray.forEach((data) => {
           let concertVenueName = data.venue.name;
           let concertVenueCity = data.venue.city;
           let concertVenueCountry = data.venue.country;
-          let concertDateFormat = moment(data.datetime).format("dddd, MMMM Do YYYY, h:mm:ss a");
+          let concertDateFormat = moment(data.datetime).format("dddd, MMMM Do YYYY, h:mm a");
           console.log(``)
           console.log(`Venue: ${concertVenueName}`)
           console.log(`Location: ${concertVenueCity}, ${concertVenueCountry}`)
           console.log(`Date: ${concertDateFormat}`)
-          console.log(`==============================`)
+          console.log(`============================================`)
         })
       }
     }).catch(function (error) {
-      console.log('Error:', error);
+      // console.log('Error:', error);
+      return console.log(`${userSearch} was not found.`)
     });
 }
