@@ -33,6 +33,7 @@ switch (userCommand) {
     handleSong();
     break;
   case 'movie-this':
+    handleMovie();
     break;
   case 'do-what-it-says':
     break;
@@ -85,10 +86,11 @@ function handleSong() {
   });
 
   spotify
-    .search({ type: 'track', query: `${userSearch}`, limit: 10 })
+    .search({ type: 'track', query: `${userSearch}`, limit: 3 })
     .then(function (response) {
       let data = response.tracks.items
-      console.log(data)
+      // let dataBody = response.body
+      // console.log('data.body', dataBody)
 
       if (data.length === 0) {
         console.log('data.length equal 0.  Do something with "The Sign" by Ace of Base.', data)
@@ -109,4 +111,31 @@ function handleSong() {
     .catch(function (err) {
       console.log(err);
     });
+};
+
+function handleMovie() {
+  console.log('handle movie invoked')
+  let url = `https://www.omdbapi.com/?t=${userSearch}&y=&plot=short&apikey=trilogy`;
+  console.log('url', url)
+
+  axios.get(url)
+    .then(function (response) {
+      console.log('movie response', response.data)
+      console.log('movie title', response.data.Title)
+      console.log('movie year', response.data.Year)
+      console.log('movie IMDB Rating', response.data.imdbRating)
+      // console.log('movie Rotten Tomatoes Rating', response.data.Ratings[1]["Value"]);
+      // console.log('movie Rotten Tomatoes Rating TEST Rating', response.data.Ratings);
+      response.data.Ratings.forEach((rating) => {
+        // console.log('rating', rating.Source)
+        if (rating.Source === "Rotten Tomatoes") {
+          console.log('Source Rating Value', rating.Value)
+        }
+      })
+      console.log('movie country of production', response.data.Country)
+      console.log('movie language', response.data.Language)
+      console.log('movie plot', response.data.Plot)
+      console.log('movie actors', response.data.Actors)
+    });
+
 }
