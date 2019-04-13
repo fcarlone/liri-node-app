@@ -88,11 +88,22 @@ function handleSong() {
     .search({ type: 'track', query: `${userSearch}`, limit: 10 })
     .then(function (response) {
       let data = response.tracks.items
+      console.log(data)
+
+      if (data.length === 0) {
+        console.log('data.length equal 0.  Do something with "The Sign" by Ace of Base.', data)
+      }
       data.forEach((song) => {
-        console.log(song.album.artists[0].name)
-        console.log(song.name)
-        console.log(song.preview_url)
-        console.log(song.album.name)
+        let songArtists = song.album.artists[0].name;
+        let songName = song.name;
+        let songPreview = song.preview_url ? song.preview_url : "preview not available";
+        let songAlbum = song.album.name
+        console.log(` `)
+        console.log(`Artist(s): ${songArtists}`);
+        console.log(`Song name: ${songName}`);
+        console.log(`Song preview: ${songPreview}`);
+        console.log(`Song album: ${songAlbum}`);
+        console.log(`============================================`);
       })
     })
     .catch(function (err) {
