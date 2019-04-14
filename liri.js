@@ -3,11 +3,8 @@ const instructions = require('./instructions.js')
 // Store user input
 let userInput = process.argv;
 userInput.splice(0, 2)
-// console.log('userInput', userInput)
 const userCommand = userInput[0];
 const userSearch = userInput.slice(1).join(' ');
-// console.log(userCommand);
-// console.log(userSearch);
 
 // Switch statement for user commands
 switch (userCommand) {
@@ -30,7 +27,7 @@ switch (userCommand) {
     methods.deleteLog();
     break;
   case 'instructions':
-    methods.instructions();
+    instructions.instructions();
     break;
   default:
     console.log("Incorrect command.  Type 'node liri instructions' for a list of available commands.")
