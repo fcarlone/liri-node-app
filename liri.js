@@ -23,9 +23,9 @@ switch (userCommand) {
   case 'do-what-it-says':
     methods.handleRandomText();
     break;
-  // case 'print-log':
-  //   **Print Log method**
-  //   break;
+  case 'print-log':
+    methods.printLog();
+    break;
   default:
     console.log("Sorry.  Incorrect command.")
 }

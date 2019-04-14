@@ -159,7 +159,7 @@ const handleRandomText = () => {
 const handleLog = (userSearch, logData) => {
   // console.log('invoke print log', logData)
   let date = moment().format('MMMM Do YYYY, h:mm:ss a');
-  let data = `Logged at: ${date} | User Search: ${userSearch} | ${logData}\n`
+  let data = `Logged at: ${date} | User Search: ${userSearch} | ${logData}\n\n`
   fs.appendFile('./log.txt', data, 'utf8', (err) => {
     if (err) {
       console.log(err);
@@ -170,10 +170,22 @@ const handleLog = (userSearch, logData) => {
   })
 }
 
+const printLog = () => {
+  fs.readFile('./log.txt', 'utf8', (err, data) => {
+    if (err) {
+      console.log(err);
+    } else {
+      let dataArray = data.split('|')
+      console.log(data)
+    }
+  })
+}
+
 module.exports = {
   handleConcert: handleConcert,
   handleSong: handleSong,
   handleMovie: handleMovie,
   handleRandomText: handleRandomText,
-  handleLog: handleLog
+  handleLog: handleLog,
+  printLog: printLog
 };
