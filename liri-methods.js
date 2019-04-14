@@ -3,10 +3,7 @@ const fs = require('fs');
 const axios = require('axios');
 const moment = require('moment');
 const Spotify = require('node-spotify-api');
-// Import the keys.js file
 const keys = require('./keys');
-
-// let spotify = new Spotify(keys.spotify); **** Need to require 'node-spotify-api'
 
 // Spotify Key
 const spotifyKey = keys.spotify.id
@@ -14,12 +11,9 @@ const spotifyKey = keys.spotify.id
 const spotifySecrete = keys.spotify.secret
 // console.log(spotifyKey, spotifySecrete)
 
-
 const handleConcert = (userSearch, callback) => {
-
-  console.log('handle concert invoked')
   let url = `https://rest.bandsintown.com/artists/${userSearch}/events?app_id=codingbootcamp`;
-  console.log('url', url);
+  // console.log('url', url);
 
   // Axios GET request
   axios.get(url)
@@ -29,7 +23,10 @@ const handleConcert = (userSearch, callback) => {
       // console.log('concertArray', concertArray)
 
       if (concertArray.length === 0) {
-        console.log(`${userSearch.toUpperCase()} currently not touring`)
+        console.log(`\n${userSearch.toUpperCase()} currently not touring`)
+        let logData = `${userSearch.toUpperCase()} currently not touring`;
+        console.log(`============================================`);
+        callback(userSearch, logData)
       } else {
         // loop through concert data array
         // console.log(`${userSearch.toUpperCase()} will be appearing at:`)
@@ -49,12 +46,13 @@ const handleConcert = (userSearch, callback) => {
         })
       }
     }).catch(function (error) {
-      console.log('Error:', error);
-      return console.log(`${userSearch} was not found.`)
+      // console.log('Error:', error);
+      console.log(`\n${userSearch} was not found.`)
+      console.log(`============================================`);
     })
 };
 
-const handleSong = (userSearch) => {
+const handleSong = (userSearch, callback) => {
   console.log('handle song function invoked')
 
   // Spotify usage with Promises
@@ -71,7 +69,30 @@ const handleSong = (userSearch) => {
       // console.log('data.body', dataBody)
 
       if (data.length === 0) {
-        console.log('data.length equal 0.  Do something with "The Sign" by Ace of Base.', data)
+        // console.log('data.length equal 0.  Do something with "The Sign" by Ace of Base.', data)
+        // axios.get(`https://api.spotify.com/v1/tracks/0hrBpAOgrt8RXigk83LLNE`)
+        //   .then(function (response) {
+        //     console.log(response)
+        //   })
+
+        spotify
+          .search({ type: 'track', query: 'ace of base the sign', limit: 1 })
+          .then(function (response) {
+            let data = response.tracks.items
+            console.log(JSON.stringify(data, null, 2))
+            // let songArtists = data.album.artists[0].name;
+            // let songName = data.name;
+            // let songPreview = data.preview_url ? song.preview_url : "preview not available";
+            // let songAlbum = data.album.name
+            // console.log(` `)
+            // console.log(`Artist(s): ${songArtists}`);
+            // console.log(`Song name: ${songName}`);
+            // console.log(`Song preview: ${songPreview}`);
+            // console.log(`Song album: ${songAlbum}`);
+            // console.log(`============================================`);
+            // let dataLog = `Artists(s):  ${songArtists} - Song name: ${songName} - Song preview: ${songPreview} - Song album: ${songAlbum}`
+            // callback(userSearch, dataLog)
+          })
       }
       data.forEach((song) => {
         let songArtists = song.album.artists[0].name;
@@ -84,6 +105,8 @@ const handleSong = (userSearch) => {
         console.log(`Song preview: ${songPreview}`);
         console.log(`Song album: ${songAlbum}`);
         console.log(`============================================`);
+        let dataLog = `Artists(s):  ${songArtists} - Song name: ${songName} - Song preview: ${songPreview} - Song album: ${songAlbum}`
+        callback(userSearch, dataLog)
       })
     })
     .catch(function (err) {
@@ -99,10 +122,6 @@ const handleMovie = (userSearch, callback) => {
   axios.get(url)
     .then(function (response) {
       let rottenTomatoesRatingValue;
-      // console.log('movie response', response.data)
-      // console.log('movie title', response.data.Title)
-      // console.log('movie year', response.data.Year)
-      // console.log('movie IMDB Rating', response.data.imdbRating)
 
       // Get rating source from Rotten Tomatoes
       response.data.Ratings.forEach((rating) => {
@@ -110,11 +129,6 @@ const handleMovie = (userSearch, callback) => {
           rottenTomatoesRatingValue = rating.Value
         }
       });
-
-      // console.log('movie country of production', response.data.Country)
-      // console.log('movie language', response.data.Language)
-      // console.log('movie plot', response.data.Plot)
-      // console.log('movie actors', response.data.Actors)
       let movieTitle = response.data.Title;
       let movieYear = response.data.Year;
       let movieImdbRating = response.data.imdbRating;
@@ -139,8 +153,6 @@ const handleMovie = (userSearch, callback) => {
       // console.log('Error:', err)
       console.log('Cannot find movie.  Maybe you will enjoy this movie:')
       handleMovie(`Mr. Nobody`, handleLog)
-      // return console.log('==================================')
-
     })
 };
 
@@ -175,8 +187,17 @@ const printLog = () => {
     if (err) {
       console.log(err);
     } else {
-      let dataArray = data.split('|')
       console.log(data)
+    }
+  })
+}
+
+const deleteLog = () => {
+  fs.writeFile('./log.txt', '', (err) => {
+    if (err) {
+      console.log(err);
+    } else {
+      console.log('\nLog has been erased.')
     }
   })
 }
@@ -187,5 +208,6 @@ module.exports = {
   handleMovie: handleMovie,
   handleRandomText: handleRandomText,
   handleLog: handleLog,
-  printLog: printLog
+  printLog: printLog,
+  deleteLog: deleteLog
 };

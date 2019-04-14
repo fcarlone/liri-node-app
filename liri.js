@@ -6,8 +6,8 @@ userInput.splice(0, 2)
 // console.log('userInput', userInput)
 const userCommand = userInput[0];
 const userSearch = userInput.slice(1).join(' ');
-console.log(userCommand);
-console.log(userSearch);
+// console.log(userCommand);
+// console.log(userSearch);
 
 // Switch statement for user commands
 switch (userCommand) {
@@ -15,7 +15,7 @@ switch (userCommand) {
     methods.handleConcert(userSearch, methods.handleLog);
     break;
   case 'spotify-this-song':
-    methods.handleSong(userSearch);
+    methods.handleSong(userSearch, methods.handleLog);
     break;
   case 'movie-this':
     methods.handleMovie(userSearch, methods.handleLog);
@@ -25,6 +25,9 @@ switch (userCommand) {
     break;
   case 'print-log':
     methods.printLog();
+    break;
+  case 'delete-log':
+    methods.deleteLog();
     break;
   default:
     console.log("Sorry.  Incorrect command.")
