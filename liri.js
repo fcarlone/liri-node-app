@@ -29,7 +29,10 @@ switch (userCommand) {
   case 'delete-log':
     methods.deleteLog();
     break;
+  case 'instructions':
+    methods.instructions();
+    break;
   default:
-    console.log("Sorry.  Incorrect command.")
+    console.log("Incorrect command.  Type 'node liri instructions' for a list of available commands.")
 }
 

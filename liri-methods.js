@@ -171,16 +171,16 @@ const handleRandomText = () => {
 const handleLog = (userSearch, logData) => {
   // console.log('invoke print log', logData)
   let date = moment().format('MMMM Do YYYY, h:mm:ss a');
-  let data = `Logged at: ${date} | User Search: ${userSearch} | ${logData}\n\n`
+  let data = `Searched on: ${date} | User Search: ${userSearch} | ${logData}\n\n`
   fs.appendFile('./log.txt', data, 'utf8', (err) => {
     if (err) {
       console.log(err);
     }
-    else {
-      // console.log(`Added to log: ${data}`);
-    }
+    // else {
+    //   // console.log(`Added to log: ${data}`);
+    // }
   })
-}
+};
 
 const printLog = () => {
   fs.readFile('./log.txt', 'utf8', (err, data) => {
@@ -190,7 +190,7 @@ const printLog = () => {
       console.log(data)
     }
   })
-}
+};
 
 const deleteLog = () => {
   fs.writeFile('./log.txt', '', (err) => {
@@ -200,7 +200,30 @@ const deleteLog = () => {
       console.log('\nLog has been erased.')
     }
   })
-}
+};
+
+const instructions = () => {
+  console.log('')
+  console.log('Use Liri to search the following topics:\nconcerts\nsongs\nmovies\n')
+
+  console.log('For example: node liri movie-this Star Wars')
+
+  console.log('\nTo search for concerts, use the command:\nnode liri concert-this [artist name]')
+  //   node liri concert - this[artist name]
+
+  console.log('\nTo search for a song, use the command:\nnode liri spotify-this-song [song name]')
+  //   node liri spotify - this - song[song name]
+
+  console.log('\nTo search for a movie, use the command:\nnode liri movie-this [movie name]')
+  // node liri movie - this[movie name]
+
+  console.log('\nYou can view your previous searches by using the command:\nnode liri print-log')
+  // node liri print - log
+
+  console.log('\nYou can delete your previous searches log by using the command:\nnode liri delete-log')
+  // node liri delete -log
+  // ')
+};
 
 module.exports = {
   handleConcert: handleConcert,
@@ -209,5 +232,6 @@ module.exports = {
   handleRandomText: handleRandomText,
   handleLog: handleLog,
   printLog: printLog,
-  deleteLog: deleteLog
+  deleteLog: deleteLog,
+  instructions: instructions
 };
