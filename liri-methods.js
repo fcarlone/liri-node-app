@@ -80,6 +80,10 @@ const handleSong = (userSearch, callback) => {
           .then(function (response) {
             let data = response.tracks.items
             console.log(JSON.stringify(data, null, 2))
+            console.log('get artist', data[0].album.artists[0].name)
+            console.log('get song name', data[0].name)
+            console.log('get song preview', data[0].preview_url)
+            console.log('get album name', data[0].album.name)
             // let songArtists = data.album.artists[0].name;
             // let songName = data.name;
             // let songPreview = data.preview_url ? song.preview_url : "preview not available";
@@ -93,21 +97,22 @@ const handleSong = (userSearch, callback) => {
             // let dataLog = `Artists(s):  ${songArtists} - Song name: ${songName} - Song preview: ${songPreview} - Song album: ${songAlbum}`
             // callback(userSearch, dataLog)
           })
+      } else {
+        data.forEach((song) => {
+          let songArtists = song.album.artists[0].name;
+          let songName = song.name;
+          let songPreview = song.preview_url ? song.preview_url : "preview not available";
+          let songAlbum = song.album.name
+          console.log(` `)
+          console.log(`Artist(s): ${songArtists}`);
+          console.log(`Song name: ${songName}`);
+          console.log(`Song preview: ${songPreview}`);
+          console.log(`Song album: ${songAlbum}`);
+          console.log(`============================================`);
+          let dataLog = `Artists(s):  ${songArtists} - Song name: ${songName} - Song preview: ${songPreview} - Song album: ${songAlbum}`
+          callback(userSearch, dataLog)
+        })
       }
-      data.forEach((song) => {
-        let songArtists = song.album.artists[0].name;
-        let songName = song.name;
-        let songPreview = song.preview_url ? song.preview_url : "preview not available";
-        let songAlbum = song.album.name
-        console.log(` `)
-        console.log(`Artist(s): ${songArtists}`);
-        console.log(`Song name: ${songName}`);
-        console.log(`Song preview: ${songPreview}`);
-        console.log(`Song album: ${songAlbum}`);
-        console.log(`============================================`);
-        let dataLog = `Artists(s):  ${songArtists} - Song name: ${songName} - Song preview: ${songPreview} - Song album: ${songAlbum}`
-        callback(userSearch, dataLog)
-      })
     })
     .catch(function (err) {
       console.log(err);
