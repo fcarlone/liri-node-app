@@ -5,22 +5,13 @@ const moment = require('moment');
 const Spotify = require('node-spotify-api');
 const keys = require('./keys');
 
-// Spotify Key
-const spotifyKey = keys.spotify.id
-// Spotify Secrete
-const spotifySecrete = keys.spotify.secret
-// console.log(spotifyKey, spotifySecrete)
-
 const handleConcert = (userSearch, callback) => {
   let url = `https://rest.bandsintown.com/artists/${userSearch}/events?app_id=codingbootcamp`;
-  // console.log('url', url);
 
   // Axios GET request
   axios.get(url)
     .then(function (response) {
-      // console.log('response', response.data[1])
       let concertArray = response.data;
-      // console.log('concertArray', concertArray)
 
       if (concertArray.length === 0) {
         console.log(`\n${userSearch.toUpperCase()} currently not touring`)
@@ -29,7 +20,7 @@ const handleConcert = (userSearch, callback) => {
         callback(userSearch, logData)
       } else {
         // loop through concert data array
-        // console.log(`${userSearch.toUpperCase()} will be appearing at:`)
+        console.log(`${userSearch.toUpperCase()} will be appearing at:`)
         concertArray.forEach((data) => {
           let concertVenueName = data.venue.name;
           let concertVenueCity = data.venue.city;
@@ -40,62 +31,43 @@ const handleConcert = (userSearch, callback) => {
           console.log(`Location: ${concertVenueCity}, ${concertVenueCountry}`);
           console.log(`Date: ${concertDateFormat}`);
           console.log(`============================================`);
-          let logData = `Venue: ${concertVenueName} - Location: ${concertVenueCity}, ${concertVenueCountry} - Date: ${concertDateFormat}`
-          // console.log(logData)
+          let logData = `Venue: ${concertVenueName} - Location: ${concertVenueCity}, ${concertVenueCountry} - Date: ${concertDateFormat}`;
           callback(userSearch, logData)
         })
       }
     }).catch(function (error) {
-      // console.log('Error:', error);
       console.log(`\n${userSearch} was not found.`)
       console.log(`============================================`);
     })
 };
 
 const handleSong = (userSearch, callback) => {
-  console.log('handle song function invoked')
-
-  // Spotify usage with Promises
   let spotify = new Spotify({
     id: keys.spotify.id,
     secret: keys.spotify.secret
   });
 
   spotify
-    .search({ type: 'track', query: `${userSearch}`, limit: 3 })
+    .search({ type: 'track', query: `${userSearch}`, limit: 5 })
     .then(function (response) {
       let data = response.tracks.items
-      // let dataBody = response.body
-      // console.log('data.body', dataBody)
-
       if (data.length === 0) {
-        // console.log('data.length equal 0.  Do something with "The Sign" by Ace of Base.', data)
-        // axios.get(`https://api.spotify.com/v1/tracks/0hrBpAOgrt8RXigk83LLNE`)
-        //   .then(function (response) {
-        //     console.log(response)
-        //   })
-
         spotify
           .search({ type: 'track', query: 'ace of base the sign', limit: 1 })
           .then(function (response) {
-            let data = response.tracks.items
-            console.log(JSON.stringify(data, null, 2))
-            console.log('get artist', data[0].album.artists[0].name)
-            console.log('get song name', data[0].name)
-            console.log('get song preview', data[0].preview_url)
-            console.log('get album name', data[0].album.name)
-            // let songArtists = data.album.artists[0].name;
-            // let songName = data.name;
-            // let songPreview = data.preview_url ? song.preview_url : "preview not available";
-            // let songAlbum = data.album.name
-            // console.log(` `)
-            // console.log(`Artist(s): ${songArtists}`);
-            // console.log(`Song name: ${songName}`);
-            // console.log(`Song preview: ${songPreview}`);
-            // console.log(`Song album: ${songAlbum}`);
-            // console.log(`============================================`);
-            // let dataLog = `Artists(s):  ${songArtists} - Song name: ${songName} - Song preview: ${songPreview} - Song album: ${songAlbum}`
-            // callback(userSearch, dataLog)
+            let data = response.tracks.items[0]
+            let songArtists = data.album.artists[0].name;
+            let songName = data.name;
+            let songPreview = data.preview_url ? data.preview_url : "preview not available";
+            let songAlbum = data.album.name
+            console.log('')
+            console.log(`Artist(s): ${songArtists}`);
+            console.log(`Song name: ${songName}`);
+            console.log(`Song preview: ${songPreview}`);
+            console.log(`Song album: ${songAlbum}`);
+            console.log(`============================================`);
+            let dataLog = `Artists(s):  ${songArtists} - Song name: ${songName} - Song preview: ${songPreview} - Song album: ${songAlbum}`
+            callback(userSearch, dataLog)
           })
       } else {
         data.forEach((song) => {
@@ -103,7 +75,7 @@ const handleSong = (userSearch, callback) => {
           let songName = song.name;
           let songPreview = song.preview_url ? song.preview_url : "preview not available";
           let songAlbum = song.album.name
-          console.log(` `)
+          console.log('')
           console.log(`Artist(s): ${songArtists}`);
           console.log(`Song name: ${songName}`);
           console.log(`Song preview: ${songPreview}`);
@@ -115,7 +87,7 @@ const handleSong = (userSearch, callback) => {
       }
     })
     .catch(function (err) {
-      console.log(err);
+      console.log('Error:', err);
     });
 };
 
@@ -181,9 +153,6 @@ const handleLog = (userSearch, logData) => {
     if (err) {
       console.log(err);
     }
-    // else {
-    //   // console.log(`Added to log: ${data}`);
-    // }
   })
 };
 
