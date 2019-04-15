@@ -141,7 +141,7 @@ const handleRandomText = () => {
 
     let dataArray = data.split(',');
     let randomTextSong = dataArray[1];
-    handleSong(randomTextSong);
+    handleSong(randomTextSong, handleLog);
   });
 };
 
