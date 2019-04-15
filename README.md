@@ -1,6 +1,6 @@
 # Liri Node Application
 
-## Liri is a clone of Apple’s Siri virtual assistant.  Enter a command in your terminal, and Liri will return the results of you search.
+## Liri is a clone of Apple’s Siri virtual assistant.  Enter a command in your terminal and Liri will return the results of your search.
 
 
 Use Liri to search the following topics: 
@@ -8,7 +8,7 @@ Use Liri to search the following topics:
 - songs
 - movies
 
-For example: `node liri movie-this Star Wars`
+For example: ```node liri movie-this Star Wars```
 
 ### Install Liri
 Clone the liri-node-app repository: [link to liri-node-app repository](https://github.com/fcarlone/liri-node-app/)  
