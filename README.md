@@ -9,7 +9,7 @@ Use Liri to search the following topics:
 - movies
 
 For example: `node liri movie-this Star Wars`  
-![movie search example]('https://github.com/fcarlone/liri-node-app/blob/master/assests/ss-star-wars.png')  
+![movie search example]("https://user-images.githubusercontent.com/16404148/56148216-cb6a5080-5f77-11e9-9a6e-9e49df6eac8e.png")  
 
 
 ### Install Liri
