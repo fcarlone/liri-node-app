@@ -8,7 +8,9 @@ Use Liri to search the following topics:
 - songs
 - movies
 
-For example: `node liri movie-this Star Wars`
+For example: `node liri movie-this Star Wars`  
+![movie search example]('/assests/ss-star-wars.png')  
+![movie search example]('https://octodex.github.com/images/yaktocat.png')
 
 ### Install Liri
 1. Clone the liri-node-app repository: [link to liri-node-app repository](https://github.com/fcarlone/liri-node-app/)  
