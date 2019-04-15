@@ -10,6 +10,7 @@ Use Liri to search the following topics:
 
 For example: `node liri movie-this Star Wars`  
 ![Image example]("https://octodex.github.com/images/yaktocat.png")  
+[Image](https://user-images.githubusercontent.com/16404148/56148216-cb6a5080-5f77-11e9-9a6e-9e49df6eac8e.png)
 
 ### Install Liri
 1. Clone the liri-node-app repository: [link to liri-node-app repository](https://github.com/fcarlone/liri-node-app/)  
