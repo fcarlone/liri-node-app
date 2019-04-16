@@ -1,6 +1,6 @@
 # Liri Node Application
 
-## Liri is a clone of Apple’s Siri virtual assistant you can use in your terminal.  Enter a command in your terminal and Liri will return the results of your search.
+## Liri is a clone of Apple’s Siri virtual assistant that you can use in your terminal.  Enter a command in your terminal and Liri will return the results of your search.
 
 
 Use Liri to search the following topics: 
