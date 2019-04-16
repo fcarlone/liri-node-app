@@ -20,7 +20,8 @@ For example: `node liri movie-this Star Wars`
   
 ### Search Commands:  
 To search for concerts, use the command:  
-`node liri concert-this [ARTIST/BAND NAME]`
+`node liri concert-this [ARTIST/BAND NAME]`  
+Example: ![Image](https://user-images.githubusercontent.com/16404148/56219826-62e1a900-6035-11e9-8f2b-9912d13838cc.png)
 
 To search for a song, use the command:  
 `node liri spotify-this-song [SONG NAME]`
