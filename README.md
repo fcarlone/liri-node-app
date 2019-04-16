@@ -25,12 +25,12 @@ Example:
 <img src="assests/ss-concert-this-example.png" height="20">
 
 To search for a song, use the command:  
-`node liri spotify-this-song [SONG NAME]`
+`node liri spotify-this-song [SONG NAME]`  
 Example:  
 <img src="assests/ss-spotify-this-song-example.png" height="20">  
 
 To search for a movie, use the command:  
-`node liri movie-this [MOVIE NAME]`
+`node liri movie-this [MOVIE NAME]`  
 Example:  
 <img src="assests/ss-movie-this-example.png" height="20">  
   
