@@ -52,6 +52,7 @@ const handleSong = (userSearch, callback) => {
     .then(function (response) {
       let data = response.tracks.items
       if (data.length === 0) {
+        console.log(`Cannot find song called ${userSearch}.  Try this song.`)
         spotify
           .search({ type: 'track', query: 'ace of base the sign', limit: 1 })
           .then(function (response) {
@@ -122,10 +123,10 @@ const handleMovie = (userSearch, callback) => {
       console.log(`Movie plot: ${moviePlot}`);
       console.log(`Actors: ${movieActors}`);
       console.log(`============================================`);
-      let logData = `Movie title: ${movieTitle} - Movie year: ${movieYear} - IMDB rating: ${movieImdbRating} - Rotten Tomatoes rating: ${movieRottenTomatoesRating} - Country Produced: ${movieProductionCountry} - Language ${movieLanguage} - Movie plot ${moviePlot} - Actors: ${movieActors}`
+      let logData = (`Movie title: ${movieTitle} - Movie year: ${movieYear} - IMDB rating: ${movieImdbRating} - Rotten Tomatoes rating: ${movieRottenTomatoesRating} - Country Produced: ${movieProductionCountry} - Language ${movieLanguage} - Movie plot ${moviePlot} - Actors: ${movieActors}`);
       callback(userSearch, logData)
     }).catch(function (err) {
-      console.log('Cannot find movie.  Maybe you will enjoy this movie:')
+      console.log(`Cannot find movie called ${userSearch}.  Maybe you will enjoy this movie:`)
       handleMovie(`Mr. Nobody`, handleLog)
     })
 };
@@ -143,7 +144,6 @@ const handleRandomText = () => {
 };
 
 const handleLog = (userSearch, logData) => {
-  // console.log('invoke print log', logData)
   let date = moment().format('MMMM Do YYYY, h:mm:ss a');
   let data = `Searched on: ${date} | User Search: ${userSearch} | ${logData}\n\n`
   fs.appendFile('./log.txt', data, 'utf8', (err) => {
@@ -172,7 +172,6 @@ const deleteLog = () => {
     }
   })
 };
-
 
 module.exports = {
   handleConcert: handleConcert,
