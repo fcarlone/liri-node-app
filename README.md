@@ -9,7 +9,7 @@ Use Liri to search the following topics:
 - movies
 
 For example: `node liri movie-this Star Wars`  
-<img src="assests/ss-star-wars-2.png" height="20">
+<img src="assests/ss-star-wars-2.png" height="23">
 
 ### Install Liri
 1. Clone the liri-node-app repository: [link to liri-node-app repository](https://github.com/fcarlone/liri-node-app/)  
