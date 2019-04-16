@@ -23,7 +23,8 @@ To search for concerts, use the command:
 `node liri concert-this [ARTIST/BAND NAME]`  
 Example: ![Image sytle="height 10px"](https://user-images.githubusercontent.com/16404148/56219826-62e1a900-6035-11e9-8f2b-9912d13838cc.png)
 
-Example: <img src="https://user-images.githubusercontent.com/16404148/56219826-62e1a900-6035-11e9-8f2b-9912d13838cc.png" style="height: 5px">
+Example: 
+<img src="https://user-images.githubusercontent.com/16404148/56219826-62e1a900-6035-11e9-8f2b-9912d13838cc.png" style="height:5px">
 
 To search for a song, use the command:  
 `node liri spotify-this-song [SONG NAME]`
