@@ -8,7 +8,7 @@ Use Liri to search the following topics:
 - songs
 - movies
 
-For example: `node liri movie-this Star Wars`  
+For example:    
 <img src="assests/ss-star-wars-2.png" height="23">
 
 ### Install Liri
@@ -21,17 +21,17 @@ For example: `node liri movie-this Star Wars`
 ### Search Commands:  
 To search for concerts, use the command:  
 `node liri concert-this [ARTIST/BAND NAME]`  
-Example:  
+For example:  
 <img src="assests/ss-concert-this-example.png" height="20">
 
 To search for a song, use the command:  
 `node liri spotify-this-song [SONG NAME]`  
-Example:  
+For example:  
 <img src="assests/ss-spotify-this-song-example.png" height="20">  
 
 To search for a movie, use the command:  
 `node liri movie-this [MOVIE NAME]`  
-Example:  
+For example:  
 <img src="assests/ss-movie-this-example.png" height="20">  
   
 ### View and Delete Your Search Log:
