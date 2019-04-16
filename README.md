@@ -9,7 +9,8 @@ Use Liri to search the following topics:
 - movies
 
 For example: `node liri movie-this Star Wars`  
-![Image](https://user-images.githubusercontent.com/16404148/56218424-f5347d80-6032-11e9-9e9f-f3713f78f0ad.png)
+<img src="assests/ss-star-wars-2.png" height="23">
+<!-- ![Image](https://user-images.githubusercontent.com/16404148/56218424-f5347d80-6032-11e9-9e9f-f3713f78f0ad.png) -->
 
 ### Install Liri
 1. Clone the liri-node-app repository: [link to liri-node-app repository](https://github.com/fcarlone/liri-node-app/)  
@@ -21,9 +22,8 @@ For example: `node liri movie-this Star Wars`
 ### Search Commands:  
 To search for concerts, use the command:  
 `node liri concert-this [ARTIST/BAND NAME]`  
-Example: ![Image](https://user-images.githubusercontent.com/16404148/56219826-62e1a900-6035-11e9-8f2b-9912d13838cc.png)
-
-Example: ![Screenshot](assests/ss-concert-this-example.png)  
+<!-- Example: ![Image](https://user-images.githubusercontent.com/16404148/56219826-62e1a900-6035-11e9-8f2b-9912d13838cc.png)
+Example: ![Screenshot](assests/ss-concert-this-example.png)   -->
 
 Example:  
 <img src="assests/ss-concert-this-example.png" height="20">
