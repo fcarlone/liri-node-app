@@ -92,9 +92,7 @@ const handleSong = (userSearch, callback) => {
 };
 
 const handleMovie = (userSearch, callback) => {
-  console.log('handle movie invoked')
   let url = `https://www.omdbapi.com/?t=${userSearch}&y=&plot=short&apikey=trilogy`;
-  console.log('url', url)
 
   axios.get(url)
     .then(function (response) {
@@ -127,7 +125,6 @@ const handleMovie = (userSearch, callback) => {
       let logData = `Movie title: ${movieTitle} - Movie year: ${movieYear} - IMDB rating: ${movieImdbRating} - Rotten Tomatoes rating: ${movieRottenTomatoesRating} - Country Produced: ${movieProductionCountry} - Language ${movieLanguage} - Movie plot ${moviePlot} - Actors: ${movieActors}`
       callback(userSearch, logData)
     }).catch(function (err) {
-      // console.log('Error:', err)
       console.log('Cannot find movie.  Maybe you will enjoy this movie:')
       handleMovie(`Mr. Nobody`, handleLog)
     })
