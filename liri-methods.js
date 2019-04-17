@@ -47,6 +47,10 @@ const handleSong = (userSearch, callback) => {
     secret: keys.spotify.secret
   });
 
+  if (!userSearch) {
+    userSearch = 'ace of base the sign';
+  };
+
   spotify
     .search({ type: 'track', query: `${userSearch}`, limit: 5 })
     .then(function (response) {
