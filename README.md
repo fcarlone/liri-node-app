@@ -47,5 +47,7 @@ You can view the instructions in the terminal by using the command:
 `node liri instructions`  
 
 
-### Video Demo:
+### Video Demo: 
+[![Watch the video](assests/node-liri-app.png)](https://drive.google.com/open?id=1Pt7RilSq7h0gyz8GR3nM93JeB8v3JB2y)
+
 
