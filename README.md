@@ -46,3 +46,8 @@ To erase the searches log, use the command:
 You can view the instructions in the terminal by using the command:  
 `node liri instructions`  
 
+
+### Video Demo:
+Video demo of the Liri application:  
+<video src="assests/liri-demo-video.mov" width="320" height="200" controls preload></video>
+ 
